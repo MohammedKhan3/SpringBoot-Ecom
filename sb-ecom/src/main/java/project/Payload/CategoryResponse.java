@@ -20,8 +20,14 @@ use lombok to create constructor, getter and setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//in categoryResponse and add pageNumber,pageSize,totalElements,totalPages and boolean lastPage
 public class CategoryResponse {
     List<CategoryDTO> content;
+    private  Integer pageNumber;
+    private  Integer pageSize;
+    private Long totalElements;
+    private Integer totalPages;
+    private boolean lastPage;
 
-    }
+}
 

@@ -1,6 +1,11 @@
 package project.service.categoryService;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import project.MyGlobalException.APIExceptions;
 import project.MyGlobalException.ResourceNotFoundException;
 import project.Payload.CategoryDTO;
@@ -36,9 +41,15 @@ public class CategoryServiceImp implements CategoryService {
  */
     @Autowired
     private ModelMapper modelMapper;
-    public CategoryResponse getCategoryList() {
+    public CategoryResponse getCategoryList(Integer pageNumber, Integer pageSize,String sortBy,String sortOrder) {
+        //that will implement PageRequest.of and pass pagenumber and pagesize
+        //                    and get page<Category>categoryPage = CategoryRepository.findall(pageDetails)
+        //
+        Sort sorByAndOrder = sortOrder.equalsIgnoreCase("asc")?Sort.by(sortBy).ascending():Sort.by(sortBy).descending();
+        Pageable pageDetails = PageRequest.of(pageNumber,pageSize,sorByAndOrder);
+        Page<Category> page= categoryRepo.findAll(pageDetails);
 
-        List<Category>categories = categoryRepo.findAll();
+        List<Category>categories = page.getContent();
         if(categories.isEmpty()) {
             throw new APIExceptions("Category List is empty!");
         }else{
@@ -52,6 +63,11 @@ categories.stream(): This converts the categories list (a collection of Category
             List<CategoryDTO> categoryDTO = categories.stream().map(category -> modelMapper.map(category,CategoryDTO.class)).toList();
             CategoryResponse categoryResponse = new CategoryResponse();
             categoryResponse.setContent(categoryDTO);
+            categoryResponse.setPageNumber(page.getNumber());
+            categoryResponse.setPageSize(page.getSize());
+            categoryResponse.setTotalElements(page.getTotalElements());
+            categoryResponse.setTotalPages(page.getTotalPages());
+            categoryResponse.setLastPage(page.isLast());
             return categoryResponse;
         }
 

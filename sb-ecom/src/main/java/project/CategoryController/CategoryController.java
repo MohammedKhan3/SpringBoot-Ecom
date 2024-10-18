@@ -1,5 +1,6 @@
 package project.CategoryController;
 
+import project.AppConfig.APPConstants;
 import project.Payload.CategoryDTO;
 import project.Payload.CategoryResponse;
 import project.categoryModel.Category;
@@ -21,10 +22,16 @@ public class CategoryController {
     private CategoryServiceImp categoryServiceImp;
   @GetMapping("/public/categories")
 
-  public ResponseEntity<CategoryResponse> getCategoryList(){
-      CategoryResponse categoryResponse = categoryServiceImp.getCategoryList();
+  public ResponseEntity<CategoryResponse> getCategoryList(@RequestParam(name ="pageNumber", defaultValue = APPConstants.PAGE_NUMBER,required = false) Integer pageNumber,@RequestParam(name = "pageSize",defaultValue = APPConstants.PAGE_SIZE,required = false)Integer pageSize,@RequestParam(name ="sortBy", defaultValue = APPConstants.SORTBY,required = false) String sortBy,@RequestParam(name ="sortOrder", defaultValue = APPConstants.SORTDIR,required = false) String sortOrder){
+      CategoryResponse categoryResponse = categoryServiceImp.getCategoryList(pageNumber,pageSize,sortBy,sortOrder);
       return new ResponseEntity<>(categoryResponse,HttpStatus.FOUND);
   }
+  @GetMapping("/echo")
+  public ResponseEntity<String>echoMessage(@RequestParam(name = "message",required = false) String message){
+      return  new ResponseEntity<>("Echoed message : " + message,HttpStatus.OK);
+
+  }
+
   @PostMapping("/public/addCategory")
   public ResponseEntity<CategoryDTO> createCategory(@Valid @RequestBody CategoryDTO category){
 

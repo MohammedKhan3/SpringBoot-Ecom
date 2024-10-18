@@ -1,18 +1,29 @@
- Model Mapper:
+Adding Paginition:
 
- https://modelmapper.org/
+Create a simple api -
 
- Create package config and create appconfig class with @Configuration
- @Bean
- method modelMapper modelMapper()-> returns ModelMapper
+postman -
+For understanding...
+add endpoint "/echo"
+return echoed message
 
- Then go to serviceimplementation
- create
- @Autowired
- private modelMapper
+For pagination we need two parameters, page number and page size
+in getAllCategory then request param for then in a parameter
 
-Challenege:
-then create a list of categoryDto call it categoryDTS and use stream to map
-then map category to categoryDTO and toList()
+update service accordingly.
+-->  in service
+    Pageable--> from springFramework
+                    that will implement PageRequest.of and pass pagenumber and pagesize
+                    and get page<Category>categoryPage = CategoryRepository.findall(pageDetails)
 
-create categoryResponse and new categoryResponse andsetcontent to categoryDTO and return it.
+Adding metadata for frontend people
+in categoryResponse and add pageNumber,pageSize,totalElements,totalPages and boolean lastPage
+
+in app config add APPconstants and
+    create public static final String Page_number = "0"
+    and page size = 50
+
+sort data ...
+
+RequestParam named sortBy as String and sortOrder too
+create default values
