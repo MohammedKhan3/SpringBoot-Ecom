@@ -1,29 +1,7 @@
-Adding Paginition:
+Implement API Response :
 
-Create a simple api -
-
-postman -
-For understanding...
-add endpoint "/echo"
-return echoed message
-
-For pagination we need two parameters, page number and page size
-in getAllCategory then request param for then in a parameter
-
-update service accordingly.
--->  in service
-    Pageable--> from springFramework
-                    that will implement PageRequest.of and pass pagenumber and pagesize
-                    and get page<Category>categoryPage = CategoryRepository.findall(pageDetails)
-
-Adding metadata for frontend people
-in categoryResponse and add pageNumber,pageSize,totalElements,totalPages and boolean lastPage
-
-in app config add APPconstants and
-    create public static final String Page_number = "0"
-    and page size = 50
-
-sort data ...
-
-RequestParam named sortBy as String and sortOrder too
-create default values
+Adding structure to API exception.
+in payload add new java class called APIResponse
+will have message and boolean status
+use lombok.
+and in globalException  we will replace string with apiresponse. for both of our methods
