@@ -1,3 +1,8 @@
+/*
+
+This class handles the Category endpoint of the application.
+
+ */
 package project.CategoryController;
 
 import project.AppConfig.APPConstants;
@@ -15,11 +20,12 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api") //we are saying that all the endpoints starts with /api
 public class CategoryController {
     @Autowired
 
     private CategoryServiceImp categoryServiceImp;
+
   @GetMapping("/public/categories")
 
   public ResponseEntity<CategoryResponse> getCategoryList(@RequestParam(name ="pageNumber", defaultValue = APPConstants.PAGE_NUMBER,required = false) Integer pageNumber,@RequestParam(name = "pageSize",defaultValue = APPConstants.PAGE_SIZE,required = false)Integer pageSize,@RequestParam(name ="sortBy", defaultValue = APPConstants.SORTBY,required = false) String sortBy,@RequestParam(name ="sortOrder",

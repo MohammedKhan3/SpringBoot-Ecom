@@ -1,7 +1,7 @@
 package project.AppConfig;
 
 import jakarta.persistence.criteria.CriteriaBuilder;
-
+//constant value for pagination
 public class APPConstants {
     public  static final String PAGE_SIZE = "50";
     public static final String PAGE_NUMBER = "0";

@@ -28,16 +28,7 @@ public class CategoryServiceImp implements CategoryService {
     private CategoryRepo categoryRepo;
 
 /**
- * Then go to serviceimplementation
- *  create
- *  @Autowired
- *  private modelMapper
  *
- * Challenege:
- * then create a list of categoryDto call it categoryDTS and use stream to map
- * then map category to categoryDTO and toList()
- *
- * create categoryResponse and new categoryResponse andsetcontent to categoryDTO and return it.
  */
     @Autowired
     private ModelMapper modelMapper;
