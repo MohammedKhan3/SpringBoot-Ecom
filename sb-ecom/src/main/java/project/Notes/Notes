@@ -1,0 +1,44 @@
+write logic to get all products
+
+ @GetMapping(/public/products/)
+ public ResponseEntity<ProductResponse> getAllProducts(){
+
+ ProductResponse = productservice.getAll()
+ return ResponseEnity
+ }
+
+ Service:
+ return list of all Products
+ List ProductDTO = products.stream().map(p->modelMapper.map(prodcut,productDto.class)).collect(Collector.toList());
+ //list of productDTO
+ ProductResponse instance
+ productResponse.setContent(productDTOS);
+ return productResponse
+
+ Test that out!!! --> WORKS FINE!
+
+ Get Products By Category - /public/categories/{categoryId}/products
+return as responseEntity<ProductResponse>getProductsByCategory(@PathVariable Long categoryId){
+    ProductResponse = service.searchByCategory(categoryID)
+    return new ResponseEntity<>ProductResponse and HTTPS.OK
+
+
+}
+
+Service:
+similar to productResponse bnut first
+get Category byId
+List<Product>products = productRepo findeByCategeoryOrderByPriceASC(Category category);
+then convert into ProductResponse using DTOS
+
+and TEST!!!
+
+GetProductBykeyword in pathVariable as String
+@GerMapping similar to getCategoyrID 0 replace with keyword
+searchProductByKeyword(keyword)
+return new entity as httpsstatus.found
+
+in service
+create method it is very similar to getCategoryById
+findByProductNameLikeIgnoreCase('%'+keyword+'%')
+Test it!

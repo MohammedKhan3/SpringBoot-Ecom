@@ -61,4 +61,25 @@ public class CategoryController {
          return new ResponseEntity<>(savedCategoryDTO,HttpStatus.OK);
 
   }
+    /**
+     * Test that out!!! --> WORKS FINE!
+     *
+     *  Get Products By Category - /public/categories/{categoryId}/products
+     * return as responseEntity<ProductResponse>getProductsByCategory(@PathVariable Long categoryId){
+     *     ProductResponse = service.searchByCategory(categoryID)
+     *     return new ResponseEntity<>ProductResponse and HTTPS.OK
+     *
+     *
+     * }
+     *
+     * Service:
+     * similar to productResponse bnut first
+     * get Category byId
+     * List<Product>products = productRepo findeByCategeoryOrderByPriceASC(Category category);
+     * then convert into ProductResponse using DTOS
+     *
+     * and TEST!!!
+     *
+     */
+    
 }
