@@ -1,10 +1,7 @@
-package project.service.categoryService;
+package project.service.Services;
 
 import project.Payload.CategoryDTO;
 import project.Payload.CategoryResponse;
-import project.categoryModel.Category;
-
-import java.util.List;
 
 public interface CategoryService {
 //instead of list use categoryResponse

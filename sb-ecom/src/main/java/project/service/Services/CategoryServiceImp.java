@@ -1,6 +1,5 @@
-package project.service.categoryService;
+package project.service.Services;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,7 +9,7 @@ import project.MyGlobalException.APIExceptions;
 import project.MyGlobalException.ResourceNotFoundException;
 import project.Payload.CategoryDTO;
 import project.Payload.CategoryResponse;
-import project.categoryModel.Category;
+import project.Models.Category;
 import project.com.repo.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

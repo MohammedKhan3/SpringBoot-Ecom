@@ -1,15 +1,17 @@
 package project.com.repo;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import project.categoryModel.Category;
-import project.categoryModel.Product;
+import project.Models.Category;
+import project.Models.Product;
 
 import java.util.List;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product,Long> {
-   List<Product> findByCategoryOrderByPriceAsc(Category category);
+   Page<Product> findByCategoryOrderByPriceAsc(Pageable pageDetails, Category category);
 
-    List<Product> findByProductNameLikeIgnoreCase(String s);
+ Page<Product> findByProductNameLikeIgnoreCase(String s, Pageable pageDetails);
 }

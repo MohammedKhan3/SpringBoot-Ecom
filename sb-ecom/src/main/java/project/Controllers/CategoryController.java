@@ -3,21 +3,17 @@
 This class handles the Category endpoint of the application.
 
  */
-package project.CategoryController;
+package project.Controllers;
 
 import project.AppConfig.APPConstants;
 import project.Payload.CategoryDTO;
 import project.Payload.CategoryResponse;
-import project.categoryModel.Category;
-import project.service.categoryService.CategoryServiceImp;
+import project.service.Services.CategoryServiceImp;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api") //we are saying that all the endpoints starts with /api
@@ -28,7 +24,7 @@ public class CategoryController {
 
   @GetMapping("/public/categories")
 
-  public ResponseEntity<CategoryResponse> getCategoryList(@RequestParam(name ="pageNumber", defaultValue = APPConstants.PAGE_NUMBER,required = false) Integer pageNumber,@RequestParam(name = "pageSize",defaultValue = APPConstants.PAGE_SIZE,required = false)Integer pageSize,@RequestParam(name ="sortBy", defaultValue = APPConstants.SORTBY,required = false) String sortBy,@RequestParam(name ="sortOrder",
+  public ResponseEntity<CategoryResponse> getCategoryList(@RequestParam(name ="pageNumber", defaultValue = APPConstants.PAGE_NUMBER,required = false) Integer pageNumber,@RequestParam(name = "pageSize",defaultValue = APPConstants.PAGE_SIZE,required = false)Integer pageSize,@RequestParam(name ="sortBy", defaultValue = APPConstants.SORTBY_CATEGORYID,required = false) String sortBy,@RequestParam(name ="sortOrder",
           defaultValue = APPConstants.SORTDIR,required = false) String sortOrder){
       CategoryResponse categoryResponse = categoryServiceImp.getCategoryList(pageNumber,pageSize,sortBy,sortOrder);
       return new ResponseEntity<>(categoryResponse,HttpStatus.FOUND);
@@ -61,6 +57,8 @@ public class CategoryController {
          return new ResponseEntity<>(savedCategoryDTO,HttpStatus.OK);
 
   }
+
+
     /**
      * Test that out!!! --> WORKS FINE!
      *
